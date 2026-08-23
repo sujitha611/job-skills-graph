@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{{ job.title }} — Job Skills Graph{% endblock %}
+{% block content %}
+
+<a href="{{ url_for('home') }}" class="back-link">&larr; Back</a>
+
+<div class="hero">
+  <h1>{{ job.title }}</h1>
+  <p>{{ job.company }} &middot; {{ job.location }}</p>
+</div>
+
+<div class="section-label">Description</div>
+<p style="max-width: 65ch; margin-bottom: 2rem;">{{ job.description }}</p>
+
+<div class="section-label">Required skills</div>
+<div>
+  {% for s in job.skills %}
+    <span class="skill-pill">{{ s }}</span>
+  {% else %}
+    <div class="empty-state">No skills recorded for this job.</div>
+  {% endfor %}
+</div>
+
+{% endblock %}

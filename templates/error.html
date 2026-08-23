@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Connection issue — Job Skills Graph{% endblock %}
+{% block content %}
+
+<div class="error-box">
+  <h2>Can't reach the database</h2>
+  <p>{{ message }}</p>
+  <p style="color: var(--muted);">
+    Check that <code>COGNODB_URI</code>, <code>COGNODB_USER</code> and
+    <code>COGNODB_PASSWORD</code> are set correctly, and that your CognoDB
+    instance is running in the console.
+  </p>
+</div>
+
+{% endblock %}

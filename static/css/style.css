@@ -1,0 +1,213 @@
+/* ---------------------------------------------------------
+   Design tokens
+   Background:  #171a2b (deep indigo-navy)
+   Surface:     #20243a
+   Text:        #eef0f4
+   Muted text:  #9aa0b4
+   Accent gold: #e5a53d  (calls to action, highlights)
+   Accent teal: #5cc4b8  (skills / graph edges)
+   Danger:      #e5686a
+--------------------------------------------------------- */
+
+:root {
+  --bg: #171a2b;
+  --surface: #20243a;
+  --surface-hi: #262b45;
+  --text: #eef0f4;
+  --muted: #9aa0b4;
+  --gold: #e5a53d;
+  --teal: #5cc4b8;
+  --danger: #e5686a;
+  --border: #333a56;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+}
+
+h1, h2, h3, .brand {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+.brand-node {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 4px rgba(229, 165, 61, 0.18);
+}
+
+nav a {
+  margin-left: 1.5rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+nav a:hover { color: var(--teal); }
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 4rem;
+}
+
+.flash {
+  background: rgba(229, 104, 106, 0.15);
+  border: 1px solid var(--danger);
+  color: var(--text);
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.hero {
+  margin-bottom: 2.5rem;
+}
+.hero h1 {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+.hero p {
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+.section-label {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem 1.2rem;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.card:hover {
+  border-color: var(--teal);
+  transform: translateY(-2px);
+}
+.card a { color: var(--text); text-decoration: none; }
+.card h3 { margin: 0 0 0.3rem; font-size: 1.05rem; }
+.card .meta { color: var(--muted); font-size: 0.88rem; }
+
+.skill-pill {
+  display: inline-block;
+  background: rgba(92, 196, 184, 0.15);
+  color: var(--teal);
+  border: 1px solid rgba(92, 196, 184, 0.35);
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.82rem;
+  margin: 0 0.4rem 0.4rem 0;
+}
+
+.skill-pill.missing {
+  background: rgba(229, 104, 106, 0.12);
+  color: var(--danger);
+  border-color: rgba(229, 104, 106, 0.3);
+}
+
+.match-bar-track {
+  background: var(--surface-hi);
+  border-radius: 999px;
+  height: 8px;
+  width: 100%;
+  overflow: hidden;
+  margin: 0.5rem 0 0.3rem;
+}
+.match-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+}
+
+.empty-state {
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+th, td {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+}
+th {
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+}
+tr:last-child td { border-bottom: none; }
+
+.foot {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.82rem;
+  padding: 2rem 0 3rem;
+}
+
+.error-box {
+  background: var(--surface);
+  border: 1px solid var(--danger);
+  border-radius: 10px;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+.error-box h2 { color: var(--danger); margin-top: 0; }
+
+.back-link { display: inline-block; margin-bottom: 1.2rem; color: var(--muted); }
+
+.why-badge {
+  font-size: 0.8rem;
+  color: var(--gold);
+}

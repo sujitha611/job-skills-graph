@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Job Skills Graph — Explore{% endblock %}
+{% block content %}
+
+<div class="hero">
+  <h1>Explore the job skills graph</h1>
+  <p>Pick a candidate to see which jobs they qualify for directly, and which
+     ones open up through related skills &mdash; connections a plain table
+     can't show you.</p>
+</div>
+
+<div class="section-label">Candidates</div>
+{% if candidates %}
+<div class="grid">
+  {% for c in candidates %}
+  <div class="card">
+    <a href="{{ url_for('candidate_view', email=c.email) }}">
+      <h3>{{ c.name }}</h3>
+      <div class="meta">{{ c.location }}</div>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">No candidates yet. Run <code>python seed.py</code> to load sample data.</div>
+{% endif %}
+
+<div class="section-label">Open jobs</div>
+{% if jobs %}
+<div class="grid">
+  {% for j in jobs %}
+  <div class="card">
+    <a href="{{ url_for('job_view', job_id=j.id) }}">
+      <h3>{{ j.title }}</h3>
+      <div class="meta">{{ j.company }} &middot; {{ j.location }}</div>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">No jobs yet. Run <code>python seed.py</code> to load sample data.</div>
+{% endif %}
+
+{% endblock %}

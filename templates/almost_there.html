@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Almost There — Job Skills Graph{% endblock %}
+{% block content %}
+
+<a href="{{ url_for('home') }}" class="back-link">&larr; Back</a>
+
+<div class="hero">
+  <h1>Almost there</h1>
+  <p>Candidates who are missing exactly one required skill for a job &mdash;
+     the closest near-misses worth a nudge or a quick upskill.</p>
+</div>
+
+{% if rows %}
+<table>
+  <tr><th>Job</th><th>Company</th><th>Candidate</th><th>Missing</th></tr>
+  {% for r in rows %}
+  <tr>
+    <td>{{ r.job_title }}</td>
+    <td>{{ r.company }}</td>
+    <td>{{ r.candidate }}</td>
+    <td>{{ r.missing_count }} skill</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="empty-state">No near-misses found right now &mdash; either everyone's a perfect match or nobody's close.</div>
+{% endif %}
+
+{% endblock %}

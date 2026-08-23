@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}{{ candidate.name }} — Job Skills Graph{% endblock %}
+{% block content %}
+
+<a href="{{ url_for('home') }}" class="back-link">&larr; Back</a>
+
+<div class="hero">
+  <h1>{{ candidate.name }}</h1>
+  <p>{{ candidate.location }}</p>
+</div>
+
+<div class="section-label">Skills</div>
+<div style="margin-bottom: 2.5rem;">
+  {% for s in skills %}
+    <span class="skill-pill">{{ s.skill }}</span>
+  {% else %}
+    <div class="empty-state">No skills recorded for this candidate.</div>
+  {% endfor %}
+</div>
+
+<div class="section-label">Direct matches</div>
+{% if direct_matches %}
+<table style="margin-bottom: 2.5rem;">
+  <tr><th>Job</th><th>Company</th><th>Match</th></tr>
+  {% for m in direct_matches %}
+  <tr>
+    <td><a href="{{ url_for('job_view', job_id=m.id) }}">{{ m.title }}</a></td>
+    <td>{{ m.company }}</td>
+    <td>
+      {{ m.matched }}/{{ m.total }} skills
+      <div class="match-bar-track">
+        <div class="match-bar-fill" style="width: {{ m.match_pct }}%;"></div>
+      </div>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="empty-state" style="margin-bottom: 2.5rem;">No direct matches yet &mdash; this candidate doesn't share any skills with a posted job.</div>
+{% endif %}
+
+<div class="section-label">Opens up through related skills <span class="why-badge">(2-hop graph traversal)</span></div>
+<p style="color: var(--muted); margin-top: -0.5rem;">
+  These jobs don't match any skill the candidate has directly &mdash; but
+  they require a skill that's closely related to one the candidate already knows.
+</p>
+{% if multi_hop %}
+<div class="grid">
+  {% for r in multi_hop %}
+  <div class="card">
+    <a href="{{ url_for('job_view', job_id=r.id) }}">
+      <h3>{{ r.title }}</h3>
+      <div class="meta">{{ r.company }}</div>
+    </a>
+    <div style="margin-top: 0.6rem;">
+      {% for v in r.via_skills %}<span class="skill-pill">{{ v }}</span>{% endfor %}
+    </div>
+    <div class="meta" style="margin-top: 0.4rem;">
+      via known skill{{ 's' if r.from_skills|length > 1 else '' }}:
+      {{ r.from_skills|join(', ') }}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">No related-skill openings found right now.</div>
+{% endif %}
+
+{% endblock %}
