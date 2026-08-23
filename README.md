@@ -198,10 +198,27 @@ looking like a small report-generation script.
 
 ## 6\. Screenshots
 
-*(Add screenshots of the home page, a candidate page, and the "Almost
-There" page here after running the app locally.)*
+\*\*Home / Explore page\*\*
 
-\---
+
+
+!\[Explore page](screenshots/jobgraph2.png)
+
+
+
+\*\*Candidate page (Suji)\*\*
+
+
+
+!\[Candidate page](screenshots/jobgraph1.png)
+
+
+
+\*\*Almost There page\*\*
+
+
+
+!\[Almost There page](screenshots/jobgraph3.png)
 
 ## 7\. Demo \& recording
 
